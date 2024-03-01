@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.company.mapper.TJobhunterEducationRecordMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.company.entity.TJobhunterEducationRecord">
+            <id property="eduId" column="edu_id" jdbcType="VARCHAR"/>
+            <result property="resumeId" column="resume_id" jdbcType="VARCHAR"/>
+            <result property="shcoolName" column="shcool_name" jdbcType="VARCHAR"/>
+            <result property="edulType" column="edul_type" jdbcType="INTEGER"/>
+            <result property="education" column="education" jdbcType="VARCHAR"/>
+            <result property="major" column="major" jdbcType="VARCHAR"/>
+            <result property="startTime" column="start_time" jdbcType="VARCHAR"/>
+            <result property="endTime" column="end_time" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        edu_id,resume_id,shcool_name,
+        edul_type,education,major,
+        start_time,end_time,description,
+        create_time,update_time
+    </sql>
+</mapper>

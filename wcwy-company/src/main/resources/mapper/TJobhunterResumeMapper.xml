@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.company.mapper.TJobhunterResumeMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.company.entity.TJobhunterResume">
+            <id property="resumeId" column="resume_id" jdbcType="VARCHAR"/>
+            <result property="tJobhunterId" column="t_jobhunter_id" jdbcType="VARCHAR"/>
+            <result property="resumeName" column="resume_name" jdbcType="VARCHAR"/>
+            <result property="advantage" column="advantage" jdbcType="VARCHAR" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+            <result property="resumeExamineStatus" column="resume_examine_status" jdbcType="INTEGER"/>
+            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+            <result property="resumeExamineResult" column="resume_examine_result" jdbcType="VARCHAR"/>
+            <result property="resume" column="resume" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        resume_id,t_jobhunter_id,resume_name,
+        advantage,resume_examine_status,deleted,
+        resume_examine_result,resume,create_time,
+        update_time
+    </sql>
+</mapper>

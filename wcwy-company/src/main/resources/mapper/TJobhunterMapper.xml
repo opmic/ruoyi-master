@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.company.mapper.TJobhunterMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.company.entity.TJobhunter">
+        <id property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="loginName" column="login_name" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="showSex" column="show_sex" jdbcType="INTEGER"/>
+        <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
+        <result property="politicsStatus" column="politics_status" jdbcType="INTEGER"/>
+        <result property="jobStatus" column="job_status" jdbcType="VARCHAR"/>
+        <result property="userType" column="user_type" jdbcType="VARCHAR"/>
+        <result property="education" column="education" jdbcType="VARCHAR"/>
+        <result property="showCurrentSalary" column="show_current_salary" jdbcType="INTEGER"/>
+        <result property="currentSalary" column="current_salary" jdbcType="DECIMAL"/>
+        <result property="expectSalary" column="expect_salary" jdbcType="DECIMAL"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="birthday" column="birthday" jdbcType="DATE"/>
+        <result property="workTime" column="work_time" jdbcType="DATE"/>
+        <result property="wechatNumber" column="wechat_number" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="advantage" column="advantage" jdbcType="VARCHAR"/>
+        <result property="industryCode" column="industry_code" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="CHAR"/>
+        <result property="skill" column="skill" jdbcType="OTHER"/>
+        <result property="resumePath" column="resume_path" jdbcType="VARCHAR"/>
+        <result property="examineStatus" column="examine_status" jdbcType="INTEGER"/>
+        <result property="refreshTime" column="refresh_time" jdbcType="TIMESTAMP"/>
+        <result property="chatId" column="chat_id" jdbcType="VARCHAR"/>
+        <result property="resumeExamineStatus" column="resume_examine_status" jdbcType="INTEGER"/>
+        <result property="resumeExamineResult" column="resume_examine_result" jdbcType="VARCHAR"/>
+        <result property="sharePerson" column="share_person" jdbcType="VARCHAR"/>
+        <result property="loginTime" column="login_time" jdbcType="TIMESTAMP"/>
+        <result property="createId" column="create_id" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateId" column="update_id" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="openid" column="openid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        user_id
+        ,login_name,password,
+        user_name,address,avatar,
+        sex,show_sex,phone_number,
+        politics_status,job_status,user_type,
+        education,show_current_salary,current_salary,
+        expect_salary,age,phone,
+        birthday,work_time,wechat_number,
+        email,advantage,industry_code,
+        status,skill,resume_path,
+        examine_status,refresh_time,chat_id,
+        resume_examine_status,resume_examine_result,share_person,
+        login_time,create_id,create_time,
+        update_id,update_time,openid
+    </sql>
+    <select id="select" resultMap="JobHunterDTOMap">
+        SELECT
+        t_jobhunter.user_id,
+        t_jobhunter.phone,
+        t_jobhunter.create_time,
+        t_jobhunter.login_name,
+        t_jobhunter.user_name,
+        t_jobhunter.avatar,
+        t_jobhunter.sex,
+        t_jobhunter.education,
+        t_jobhunter.current_salary,
+        t_jobhunter.resume_examine_status,
+        t_jobhunter.resume_examine_result,
+        t_jobhunter_resume.resume_id,
+        t_jobhunter.birthday,
+        t_jobhunter.address,
+        t_jobhunter.share_person
+        FROM
+        t_jobhunter
+        INNER JOIN
+        t_jobhunter_resume
+        ON
+        t_jobhunter.user_id = t_jobhunter_resume.t_jobhunter_id
+        LEFT JOIN
+        t_jobhunter_work_record
+        ON
+        t_jobhunter_resume.resume_id = t_jobhunter_work_record.resume_id
+        LEFT JOIN
+        t_jobhunter_expect_position
+        ON
+        t_jobhunter_resume.resume_id = t_jobhunter_expect_position.resume_id
+
+        <where>
+            <if test="tJobHunterQuery.workStartDate !=null and tJobHunterQuery.workEndDate !=null ">
+                t_jobhunter.work_time BETWEEN #{tJobHunterQuery.workStartDate} AND #{tJobHunterQuery.workEndDate}
+            </if>
+            <if test="tJobHunterQuery.keyword !=null and tJobHunterQuery.keyword !=null ">
+                AND (t_jobhunter.user_name LIKE CONCAT ("%",#{tJobHunterQuery.keyword}, "%") or
+                t_jobhunter_work_record.position_name LIKE CONCAT ("%",#{tJobHunterQuery.keyword}, "%") or
+                t_jobhunter_work_record.company_name LIKE CONCAT ("%",#{tJobHunterQuery.keyword}, "%") )
+            </if>
+            <if test="tJobHunterQuery.sex !=null and tJobHunterQuery.sex !=''">
+                AND t_jobhunter.sex = #{tJobHunterQuery.sex}
+            </if>
+            <if test="tJobHunterQuery.beginAge !=null and tJobHunterQuery.endAge !=null and tJobHunterQuery.beginAge !='' and tJobHunterQuery.endAge !='' ">
+                AND YEAR(t_jobhunter.birthday) BETWEEN #{tJobHunterQuery.endAge} AND #{tJobHunterQuery.beginAge}
+            </if>
+            <if test="tJobHunterQuery.registerStartDate !=null and tJobHunterQuery.registerEndDate !=null ">
+                AND t_jobhunter.create_time BETWEEN #{tJobHunterQuery.registerStartDate} AND
+                #{tJobHunterQuery.registerEndDate}
+            </if>
+            <if test="tJobHunterQuery.tartAnnualSalary !=null and tJobHunterQuery.endAnnualSalary !=null and tJobHunterQuery.tartAnnualSalary !='' and tJobHunterQuery.endAnnualSalary !='' ">
+                AND t_jobhunter.current_salary BETWEEN #{tJobHunterQuery.tartAnnualSalary} AND
+                #{tJobHunterQuery.endAnnualSalary}
+            </if>
+            <if test="tJobHunterQuery.education !=null and tJobHunterQuery.education !=''">
+                AND t_jobhunter.education = #{tJobHunterQuery.education}
+            </if>
+            <if test="tJobHunterQuery.city !=null and tJobHunterQuery.city !='' ">
+                AND
+                t_jobhunter.address ->'$.city'=#{tJobHunterQuery.city}
+            </if>
+            <if test=" tJobHunterQuery.company !=null and tJobHunterQuery.company !='' ">
+                AND t_jobhunter_work_record.company_name =#{tJobHunterQuery.company}
+            </if>
+            <if test="tJobHunterQuery.expectationCity !=null and tJobHunterQuery.expectationCity !=''">
+                AND t_jobhunter_expect_position.work_city LIKE CONCAT ("%",#{tJobHunterQuery.expectationCity}, "%")
+            </if>
+            <if test="tJobHunterQuery.industry !=null and tJobHunterQuery.industry !=''">
+                AND
+                t_jobhunter_work_record.industry LIKE CONCAT("%",#{tJobHunterQuery.industry}, "%")
+            </if>
+            <if test="tJobHunterQuery.position !=null  and tJobHunterQuery.position !=''">
+                AND t_jobhunter_work_record.position=#{tJobHunterQuery.position}
+            </if>
+            <if test="tJobHunterQuery.source !=null  and tJobHunterQuery.source ==0">
+                AND t_jobhunter.share_person IS NULL
+            </if>
+            <if test="tJobHunterQuery.source !=null  and tJobHunterQuery.source ==1">
+                AND t_jobhunter.share_person IS NOT NULL
+            </if>
+            <if test="tJobHunterQuery.examineStatus !=null  and tJobHunterQuery.examineStatus !=3">
+                AND t_jobhunter.examine_status =#{tJobHunterQuery.examineStatus}
+            </if>
+            <if test="tJobHunterQuery.examineStatus !=null  and tJobHunterQuery.examineStatus ==3">
+                AND t_jobhunter.status =1
+            </if>
+        </where>
+        GROUP BY t_jobhunter.user_id
+        ORDER BY
+        t_jobhunter.create_time DESC
+    </select>
+
+    <resultMap id="JobHunterDTOMap" type="com.ruoyi.company.dto.JobHunterDTO">
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="resumeId" column="resume_id" jdbcType="VARCHAR"/>
+        <result property="loginName" column="login_name" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="education" column="education" jdbcType="VARCHAR"/>
+        <result property="currentSalary" column="current_salary" jdbcType="DECIMAL"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="birthday" column="birthday" jdbcType="DATE"/>
+        <result property="workTime" column="work_time" jdbcType="DATE"/>
+        <result property="status" column="status" jdbcType="CHAR"/>
+        <result property="resumeExamineStatus" column="resume_examine_status" jdbcType="INTEGER"/>
+        <result property="resumeExamineResult" column="resume_examine_result" jdbcType="VARCHAR"/>
+        <result property="sharePerson" column="share_person" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+</mapper>

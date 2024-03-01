@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.company.mapper.BankCardMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.company.entity.BankCard">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="userTel" column="user_tel" jdbcType="VARCHAR"/>
+        <result property="bankSubName" column="bank_sub_name" jdbcType="VARCHAR"/>
+        <result property="bankName" column="bank_name" jdbcType="VARCHAR"/>
+        <result property="bankNum" column="bank_num" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="realName" column="real_name" jdbcType="VARCHAR"/>
+        <result property="card" column="card" jdbcType="VARCHAR"/>
+        <result property="cardFront" column="card_front" jdbcType="VARCHAR"/>
+        <result property="cardVerso" column="card_verso" jdbcType="VARCHAR"/>
+        <result property="audit" column="audit" jdbcType="INTEGER"/>
+        <result property="auditCause" column="audit_cause" jdbcType="VARCHAR"/>
+        <result property="auditTime" column="audit_time" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,user_name,user_tel,
+        bank_sub_name,bank_name,bank_num,
+        user_id,real_name,card,
+        card_front,card_verso,audit,
+        audit_cause,audit_time,create_time
+    </sql>
+
+
+    <select id="selectPage1" resultType="com.ruoyi.company.dto.BankCardDTO">
+        SELECT
+        bank_card.id,
+        bank_card.user_name as userName,
+        bank_card.user_tel as userTel,
+        bank_card.bank_sub_name as bankSubName,
+        bank_card.bank_name as bankName,
+        bank_card.bank_num as bankNum,
+        bank_card.user_id as userId,
+        bank_card.real_name as realName,
+        bank_card.card,
+        bank_card.card_front as cardFront,
+        bank_card.card_verso as cardVerso ,
+        bank_card.audit,
+
+        bank_card.audit_cause as auditCause,
+        t_recommend.username as accountNumberName,
+        t_recommend.head_path as headPath,
+        bank_card.create_time as createTime,
+        bank_card.audit_time as auditTime
+        FROM
+        bank_card
+        INNER JOIN
+        t_recommend
+        ON
+        bank_card.user_id = t_recommend.id
+        <where>
+            <if test=" bankCardQuery.audit !=null ">
+                AND bank_card.audit =#{bankCardQuery.audit}
+            </if>
+            <if test=" bankCardQuery.realName !=null  and   bankCardQuery.realName !=''">
+                AND ( bank_card.user_name LIKE CONCAT('%',#{bankCardQuery.realName},'%') OR bank_card.real_name LIKE
+                CONCAT('%',#{bankCardQuery.realName},'%') )
+            </if>
+
+            <if test="bankCardQuery.endDate !=null  and bankCardQuery.startDate !=null ">
+                and bank_card.create_time BETWEEN #{bankCardQuery.startDate} AND #{bankCardQuery.endDate}
+            </if>
+            <if test=" bankCardQuery.endDate !=null  and bankCardQuery.startDate ==null ">
+                and bank_card.create_time &lt;= #{bankCardQuery.endDate}
+            </if>
+            <if test="bankCardQuery.endDate ==null and bankCardQuery.startDate !=null ">
+                and bank_card.create_time >= #{bankCardQuery.startDate}
+            </if>
+
+        </where>
+        ORDER BY
+        bank_card.create_time DESC
+    </select>
+</mapper>

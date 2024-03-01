@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.company.mapper.TCompanyContractMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.company.entity.TCompanyContract">
+            <id property="contractId" column="contract_id" jdbcType="VARCHAR"/>
+        <result property="signContract" column="sign_contract" jdbcType="VARCHAR"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+            <result property="contractDate" column="contract_date" jdbcType="DATE"/>
+            <result property="state" column="state" jdbcType="INTEGER"/>
+            <result property="auditContract" column="audit_contract" jdbcType="INTEGER"/>
+            <result property="auditTime" column="audit_time" jdbcType="TIMESTAMP"/>
+            <result property="auditCause" column="audit_cause" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createId" column="create_id" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        contract_id,sign_contract,contract_date,
+        `state`,audit_contract,audit_time,
+        audit_cause,create_time,create_id,
+        update_time,deleted
+    </sql>
+    <select id="select" resultMap="TCompanyContractDtoMap">
+
+        SELECT
+            t_company_contract.contract_id,
+            t_company_contract.`name`,
+            t_company_contract.sign_contract,
+            t_company_contract.contract_date,
+            t_company_contract.state,
+            t_company_contract.audit_contract,
+            t_company_contract.audit_time,
+            t_company_contract.audit_cause,
+            t_company_contract.create_time,
+            t_company_contract.create_id,
+            t_company_contract.update_time,
+            t_company.company_name,
+            t_company.logo_path,
+            t_company.contact_name,
+        t_company.company_type,
+            t_company.sex,
+            t_company.login_name
+        FROM
+            t_company_contract
+                INNER JOIN
+            t_company
+            ON
+                t_company_contract.create_id = t_company.company_id
+        <where>
+            <if test="keyword !=null and keyword !=''">
+                t_company.company_name  LIKE concat('%',#{keyword},'%')
+            </if>
+            <if test="type !=null">
+                AND  t_company.company_type =  #{type}
+            </if>
+            <if test="audit !=null">
+                AND  t_company_contract.audit_contract =#{audit}
+            </if>
+        </where>
+        ORDER BY
+        t_company_contract.create_time
+    </select>
+    <resultMap id="TCompanyContractDtoMap" type="com.ruoyi.company.dto.TCompanyContractDto">
+        <id property="contractId" column="contract_id" jdbcType="VARCHAR"/>
+        <result property="signContract" column="sign_contract" jdbcType="VARCHAR"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+        <result property="contractDate" column="contract_date" jdbcType="DATE"/>
+        <result property="state" column="state" jdbcType="INTEGER"/>
+        <result property="auditContract" column="audit_contract" jdbcType="INTEGER"/>
+        <result property="auditTime" column="audit_time" jdbcType="TIMESTAMP"/>
+        <result property="auditCause" column="audit_cause" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="companyType" column="company_type" jdbcType="INTEGER"/>
+        <result property="createId" column="create_id" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+        <result property="contactPhone" column="login_name" jdbcType="VARCHAR"/>
+        <result property="logoPath" column="logo_path" jdbcType="VARCHAR"/>
+        <result property="companyName" column="company_name" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="contactName" column="contact_name" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>

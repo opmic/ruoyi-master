@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.post.mapper.TCompanyPostMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.post.entity.TCompanyPost">
+            <id property="postId" column="post_id" jdbcType="VARCHAR"/>
+            <result property="companyId" column="company_id" jdbcType="VARCHAR"/>
+            <result property="companyName" column="company_name" jdbcType="VARCHAR"/>
+            <result property="virtualName" column="virtual_name" jdbcType="VARCHAR"/>
+            <result property="conceal" column="conceal" jdbcType="INTEGER"/>
+            <result property="logo" column="logo" jdbcType="VARCHAR"/>
+            <result property="customLogo" column="custom_logo" jdbcType="VARCHAR"/>
+            <result property="companyType" column="company_type" jdbcType="INTEGER"/>
+            <result property="firmSize" column="firm_size" jdbcType="VARCHAR"/>
+            <result property="companyTypeId" column="company_type_id" jdbcType="VARCHAR"/>
+            <result property="postCount" column="post_count" jdbcType="INTEGER"/>
+            <result property="department" column="department" jdbcType="VARCHAR"/>
+            <result property="departmentMessage" column="department_message" jdbcType="VARCHAR"/>
+            <result property="publishCause" column="publish_cause" jdbcType="VARCHAR"/>
+            <result property="postAttribute" column="post_attribute" jdbcType="VARCHAR"/>
+            <result property="managerialPosition" column="managerial_position" jdbcType="INTEGER"/>
+            <result property="industry" column="industry" jdbcType="VARCHAR"   typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+        <result property="position" column="position" jdbcType="VARCHAR"   typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+            <result property="workCity" column="work_city" jdbcType="VARCHAR"   typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+            <result property="provinceid" column="provinceid" jdbcType="INTEGER"/>
+            <result property="cityid" column="cityid" jdbcType="CHAR"/>
+            <result property="enterpriseProfile" column="enterprise_profile" jdbcType="VARCHAR"/>
+            <result property="reObject" column="re_object" jdbcType="INTEGER"/>
+            <result property="customReportObj" column="custom_report_obj" jdbcType="VARCHAR"/>
+            <result property="team" column="team" jdbcType="INTEGER"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="customTeam" column="custom_team" jdbcType="VARCHAR"/>
+            <result property="beginSalary" column="begin_salary" jdbcType="DECIMAL"/>
+            <result property="vacationWelfare" column="vacation_welfare" jdbcType="VARCHAR"/>
+            <result property="postWealId" column="post_weal_id" jdbcType="VARCHAR"   typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+            <result property="endSalary" column="end_salary" jdbcType="DECIMAL"/>
+            <result property="urgency" column="urgency" jdbcType="INTEGER"/>
+            <result property="salaryRemark" column="salary_remark" jdbcType="VARCHAR"/>
+            <result property="lightspot" column="lightspot" jdbcType="VARCHAR"/>
+            <result property="socialSecurityWelfare" column="social_security_welfare" jdbcType="VARCHAR"/>
+            <result property="workExperience" column="work_experience" jdbcType="VARCHAR"/>
+            <result property="workExperienceId" column="work_experience_id" jdbcType="INTEGER"/>
+            <result property="customBeginExperience" column="custom_begin_experience" jdbcType="INTEGER"/>
+            <result property="customEndExperience" column="custom_end_experience" jdbcType="INTEGER"/>
+            <result property="educationType" column="education_type" jdbcType="VARCHAR"/>
+            <result property="educationId" column="education_id" jdbcType="INTEGER"/>
+            <result property="isRecruit" column="is_recruit" jdbcType="TINYINT"/>
+            <result property="collegeType" column="college_type" jdbcType="INTEGER"/>
+            <result property="postLabel" column="post_label" jdbcType="VARCHAR"/>
+            <result property="industryContent" column="industry_content" jdbcType="VARCHAR"/>
+            <result property="languageType" column="language_type" jdbcType="VARCHAR"/>
+            <result property="auditionInfo" column="audition_info" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="workday" column="workday" jdbcType="INTEGER"/>
+            <result property="hiredBounty" column="hired_bounty" jdbcType="DECIMAL"/>
+            <result property="percentage" column="percentage" jdbcType="INTEGER"/>
+            <result property="isDispatch" column="is_dispatch" jdbcType="TINYINT"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="expirationDate" column="expiration_date" jdbcType="DATE"/>
+            <result property="postType" column="post_type" jdbcType="INTEGER"/>
+            <result property="jobCategory" column="job_category" jdbcType="VARCHAR"/>
+            <result property="postCode" column="post_code" jdbcType="VARCHAR"/>
+            <result property="refreshTime" column="refresh_time" jdbcType="TIMESTAMP"/>
+            <result property="audit" column="audit" jdbcType="INTEGER"/>
+            <result property="causeOfFailure" column="cause_of_failure" jdbcType="VARCHAR"/>
+            <result property="createId" column="create_id" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="share" column="share" jdbcType="INTEGER"/>
+            <result property="updateId" column="update_id" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+            <result property="day" column="day" jdbcType="INTEGER"/>
+            <result property="top" column="top" jdbcType="INTEGER"/>
+            <result property="dayTime" column="day_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        post_id,company_id,company_name,
+        virtual_name,conceal,logo,
+        custom_logo,company_type,firm_size,
+        company_type_id,post_count,department,
+        department_message,publish_cause,post_attribute,
+        managerial_position,industry,position,
+        work_city,provinceid,cityid,
+        enterprise_profile,re_object,custom_report_obj,
+        team,description,custom_team,
+        begin_salary,vacation_welfare,post_weal_id,
+        end_salary,urgency,salary_remark,
+        lightspot,social_security_welfare,work_experience,
+        work_experience_id,custom_begin_experience,custom_end_experience,
+        education_type,education_id,is_recruit,
+        college_type,post_label,industry_content,
+        language_type,audition_info,address,
+        workday,hired_bounty,percentage,
+        is_dispatch,status,expiration_date,
+        post_type,job_category,post_code,
+        refresh_time,audit,cause_of_failure,
+        create_id,create_time,share,
+        update_id,update_time,deleted,
+        day,top,day_time
+    </sql>
+</mapper>

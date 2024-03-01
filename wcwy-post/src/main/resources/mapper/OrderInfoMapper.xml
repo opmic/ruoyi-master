@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.post.mapper.OrderInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.post.entity.OrderInfo">
+            <id property="orderId" column="order_id" jdbcType="VARCHAR"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="orderOn" column="order_on" jdbcType="VARCHAR"/>
+            <result property="postId" column="post_id" jdbcType="VARCHAR"/>
+            <result property="paymentType" column="payment_type" jdbcType="VARCHAR"/>
+            <result property="putInResumeId" column="put_in_resume_id" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="INTEGER"/>
+            <result property="stateCause" column="state_cause" jdbcType="VARCHAR"/>
+            <result property="jobhunterId" column="jobhunter_id" jdbcType="VARCHAR"/>
+            <result property="codeUrl" column="code_url" jdbcType="VARCHAR"/>
+            <result property="recommendId" column="recommend_id" jdbcType="VARCHAR"/>
+            <result property="money" column="money" jdbcType="DECIMAL"/>
+            <result property="noPaymentTime" column="no_payment_time" jdbcType="DATE"/>
+            <result property="paymentAmount" column="payment_amount" jdbcType="DECIMAL"/>
+            <result property="referrerId" column="referrer_id" jdbcType="VARCHAR"/>
+            <result property="invoice" column="invoice" jdbcType="VARCHAR"/>
+            <result property="identification" column="identification" jdbcType="INTEGER"/>
+            <result property="referrerMoney" column="referrer_money" jdbcType="DECIMAL"/>
+            <result property="shareUserId" column="share_user_id" jdbcType="VARCHAR"/>
+            <result property="shareMoney" column="share_money" jdbcType="DECIMAL"/>
+            <result property="inviterCompany" column="inviter_company" jdbcType="VARCHAR"/>
+            <result property="inviterCompanyMoney" column="inviter_company_money" jdbcType="DECIMAL"/>
+            <result property="inviterCompanyRecommend" column="inviter_company_recommend" jdbcType="VARCHAR"/>
+            <result property="inviterCompanyRecommendMoney" column="inviter_company_recommend_money" jdbcType="DECIMAL"/>
+            <result property="platformMoney" column="platform_money" jdbcType="DECIMAL"/>
+            <result property="divideIntoIf" column="divide_into_if" jdbcType="INTEGER"/>
+            <result property="particulars" column="particulars" jdbcType="VARCHAR"/>
+            <result property="createId" column="create_id" jdbcType="VARCHAR"/>
+            <result property="createName" column="create_name" jdbcType="VARCHAR"/>
+            <result property="payer" column="payer" jdbcType="VARCHAR"/>
+            <result property="payerTime" column="payer_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateId" column="update_id" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        order_id,title,order_on,
+        post_id,payment_type,put_in_resume_id,
+        state,state_cause,jobhunter_id,
+        code_url,recommend_id,money,
+        no_payment_time,payment_amount,referrer_id,
+        invoice,identification,referrer_money,
+        share_user_id,share_money,inviter_company,
+        inviter_company_money,inviter_company_recommend,inviter_company_recommend_money,
+        platform_money,divide_into_if,particulars,
+        create_id,create_name,payer,
+        payer_time,create_time,update_id,
+        update_time,deleted
+    </sql>
+</mapper>

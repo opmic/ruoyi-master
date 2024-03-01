@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.company.mapper.TRecommendMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.company.entity.TRecommend">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="loginName" column="login_name" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="logo" column="logo" jdbcType="VARCHAR"/>
+            <result property="birth" column="birth" jdbcType="TIMESTAMP"/>
+            <result property="age" column="age" jdbcType="INTEGER"/>
+            <result property="headPath" column="head_path" jdbcType="VARCHAR"/>
+            <result property="education" column="education" jdbcType="VARCHAR"/>
+            <result property="sex" column="sex" jdbcType="INTEGER"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="card" column="card" jdbcType="VARCHAR"/>
+            <result property="wechatId" column="wechat_id" jdbcType="VARCHAR"/>
+            <result property="cardFront" column="card_front" jdbcType="VARCHAR"/>
+            <result property="cardVerso" column="card_verso" jdbcType="VARCHAR"/>
+            <result property="currencyCount" column="currency_count" jdbcType="DECIMAL"/>
+            <result property="recommendedCity" column="recommended_city"  jdbcType="VARCHAR" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+            <result property="industry" column="industry" jdbcType="VARCHAR" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+            <result property="manMessage" column="man_message" jdbcType="VARCHAR"/>
+            <result property="academy" column="academy" jdbcType="VARCHAR"/>
+            <result property="careerId" column="career_id" jdbcType="VARCHAR"/>
+            <result property="entranceTime" column="entrance_time" jdbcType="TIMESTAMP"/>
+            <result property="graduateTime" column="graduate_time" jdbcType="TIMESTAMP"/>
+            <result property="recruitment" column="recruitment" jdbcType="INTEGER"/>
+            <result property="identity" column="identity" jdbcType="INTEGER"/>
+            <result property="companyName" column="company_name" jdbcType="VARCHAR"/>
+            <result property="position" column="position" jdbcType="VARCHAR"/>
+            <result property="gradeId" column="grade_id" jdbcType="VARCHAR"/>
+            <result property="empiricalValue" column="empirical_value" jdbcType="BIGINT"/>
+            <result property="certificate" column="certificate" jdbcType="VARCHAR"/>
+            <result property="sharePerson" column="share_person" jdbcType="VARCHAR"/>
+            <result property="examineStatus" column="examine_status" jdbcType="INTEGER"/>
+            <result property="examineResult" column="examine_result" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="administrator" column="administrator" jdbcType="INTEGER"/>
+            <result property="parentId" column="parent_id" jdbcType="VARCHAR"/>
+            <result property="subsidiary" column="subsidiary" jdbcType="VARCHAR"/>
+            <result property="registrantTime" column="registrant_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="updateId" column="update_id" jdbcType="VARCHAR"/>
+            <result property="logoutTime" column="logout_time" jdbcType="TIMESTAMP"/>
+            <result property="loginTime" column="login_time" jdbcType="TIMESTAMP"/>
+            <result property="wxOpenid" column="wx_openid" jdbcType="VARCHAR"/>
+            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,username,login_name,
+        password,logo,birth,
+        age,head_path,education,
+        sex,phone,card,
+        wechat_id,card_front,card_verso,
+        currency_count,recommended_city,industry,
+        man_message,academy,career_id,
+        entrance_time,graduate_time,recruitment,
+        identity,company_name,position,
+        grade_id,empirical_value,certificate,
+        share_person,examine_status,examine_result,
+        status,administrator,parent_id,
+        subsidiary,registrant_time,update_time,
+        update_id,logout_time,login_time,
+        wx_openid,deleted
+    </sql>
+</mapper>

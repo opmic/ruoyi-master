@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.company.mapper.SourceOfReturnsMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.company.entity.SourceOfReturns">
+        <id property="sourceOfReturnsId" column="source_of_returns_id" jdbcType="VARCHAR"/>
+        <result property="aggregateAmount" column="aggregate_amount" jdbcType="DECIMAL"/>
+        <result property="identity" column="identity" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+        <result property="sourceUser" column="source_user" jdbcType="VARCHAR"/>
+        <result property="earnings" column="earnings" jdbcType="DECIMAL"/>
+        <result property="orderTime" column="order_time" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="payer" column="payer" jdbcType="VARCHAR"/>
+        <result property="createId" column="create_id" jdbcType="VARCHAR"/>
+        <result property="deposit" column="deposit" jdbcType="DECIMAL"/>
+        <result property="earningUser" column="earning_user" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        source_of_returns_id
+        ,aggregate_amount,identity,type,payer,
+        order_id,source_user,earnings,
+        order_time,create_time,create_id,
+        deposit,earning_user
+    </sql>
+</mapper>
